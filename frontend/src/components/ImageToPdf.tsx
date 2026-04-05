@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react'
+import axios from 'axios';
 
-const ImageToPdf = async() => {
+const ImageToPdf = () => {
 
     const [file, setFile] = useState<File | null>(null);
 
@@ -11,22 +12,26 @@ const ImageToPdf = async() => {
         }
     }
 
-    const imageUrl = file ? URL.createObjectURL(file) : '';
 
-    const handleSubmit = () => {
+    const handleSubmit = async() => {
         // Handle form submission logic here
 
-        if(!file){
+        if (!file) {
             alert('Please select a file before submitting.');
             return;
         }
 
-     
-    const formDate = new FormData();
-    formDate.append('image', file as Blob);
+        const formDate = new FormData();
+        formDate.append('image', file );
 
+      try{
+        const response = await axios.post('http://localhost:3000/data', formDate, );
+         console.log(response.data);
+      } catch (error) {
+        console.error('Error uploading file:', error);
+      }
 
-    };
+      };
 
 
     return (
@@ -44,9 +49,9 @@ const ImageToPdf = async() => {
             }
 
 
-<div>
-    <button onClick={handleSubmit}>submit</button>
-</div>
+            <div>
+                <button onClick={handleSubmit}>submit</button>
+            </div>
         </div>
     )
 }
