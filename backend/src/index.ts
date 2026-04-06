@@ -25,58 +25,58 @@ app.get('/', (req, res) => {
 });
 
 
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({
+  storage: multer.memoryStorage(),
 
-app.post('/data', upload.single('image'), (req, res) => {
+  limits: {
+    fileSize: 5 * 1024 * 1024,
+  },
 
-  if (!req.file) {
-    return res.status(400).json({ error: 'No file uploaded' });
-  }
-  try {
+  fileFilter: (req, file, cb) => {
+    const allowedTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/gif",
+    ];
 
-
-    if (!fs.existsSync('src/output')) {
-      fs.mkdirSync('src/output' );
+    if (allowedTypes.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(new Error("Only JPEG, PNG, and GIF files are allowed"));
     }
-
-    const doc = new PDFDocument();
-
-    const stream = fs.createWriteStream(`src/output/${Date.now()}.pdf`);
-    doc.pipe(stream);
+  },
+});
 
 
-    doc.image(req.file.path, {
-      fit: [500, 400],
-      align: 'center',
-      valign: 'center'
+
+
+app.post("/data", upload.single("image"), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({
+      message: "No image uploaded",
     });
-    doc.end();
-
-    stream.on("finish", () => {
-      return res.status(200).json({
-        message: "PDF created successfully",
-        file: stream.path
-      })
-
-    })
-
-    stream.on("error", (err) => {
-      return res.status(500).json({
-        success: false,
-        message: "Error creating PDF",
-        error: err.message
-      })
-    })
-
-
-  } catch (error) {
-    return res.status(500).json({
-      success: false,
-      message: "Error creating PDF",
-    });
-
-
   }
+
+  const originalName = req.file.originalname.replace(/\.[^/.]+$/, "");
+  const pdfName = `${originalName}.pdf`;
+
+  const doc = new PDFDocument();
+
+  res.setHeader("Content-Type", "application/pdf");
+  res.setHeader(
+    "Content-Disposition",
+    `attachment; filename="${pdfName}"`
+  );
+
+  doc.pipe(res);
+
+  doc.image(req.file.buffer, {
+    fit: [500, 650],
+    align: "center",
+    valign: "center",
+  });
+
+  doc.end();
 });
 
 app.listen(PORT, () => {
