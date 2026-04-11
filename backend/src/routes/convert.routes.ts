@@ -2,8 +2,9 @@ import { Router } from "express";
 
 const router = Router();
 
-import { convertToPDF } from "../controllers/converter.controllers.js";
+import { convert } from "../controllers/converter.controllers.js";
+import { upload } from "../utils/multer.js";
 
-router.post("/convert", convertToPDF);
+router.post("/data",upload.single('image'), convert);
 
 export default router;

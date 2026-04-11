@@ -35,7 +35,7 @@ const ImageToPdf = () => {
       formData.append("image", file);
 
       const response = await axios.post(
-        "http://localhost:3000/data",
+        "http://localhost:3000/api/data",
         formData,
         {
           responseType: "blob",
