@@ -8,13 +8,14 @@ dotenv.config()
 const app = express();
 const PORT = process.env.PORT
 
+const allowedOrigins = ["https://file-mind-mu.vercel.app", "http://localhost:5173"]
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: allowedOrigins,
   methods: ['POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type']
 }))
 
-import imagePdf from "./routes/convert.routes.js"
+import imagePdf from "./src/routes/convert.routes.js"
 app.use("/api", imagePdf)
 
 

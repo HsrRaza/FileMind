@@ -35,7 +35,7 @@ const ImageToPdf = () => {
       formData.append("image", file);
 
       const response = await axios.post(
-        "http://localhost:3000/api/data",
+        import.meta.env.VITE_API_URL,
         formData,
         {
           responseType: "blob",
@@ -68,13 +68,13 @@ const ImageToPdf = () => {
   };
 
   return (
-    <div className="h-[80vh] bg-cream flex items-center justify-center p-6">
-      <div className="w-full max-w-2xl rounded-3xl bg-cream-dark border border-rose p-8 shadow-md">
-        <h1 className="text-3xl font-bold text-center mb-2 text-rose-dark">
+    <div className="h-[70vh] bg-cream flex items-center justify-center p-6">
+      <div className="w-full   max-w-2xl rounded-2xl bg-cream-dark border border-rose p-8 shadow-md">
+        <h1 className="text-2xl font-bold text-center mb-2 text-rose-dark">
           Image to PDF Converter
         </h1>
 
-        <p className="text-center text-rose-dark/70 mb-8">
+        <p className="text-center text-sm text-rose-dark/70 mb-6">
           Upload a PNG or JPG image and download it instantly as PDF
         </p>
 
@@ -88,8 +88,8 @@ const ImageToPdf = () => {
 
           {!file ? (
             <>
-              <div className="text-5xl mb-3">🖼️</div>
-              <p className="font-medium text-gray-700">Click to select image</p>
+              <div className="text-3xl mb-3">🖼️</div>
+              <p className="font-sm text-gray-700">Click to select image</p>
               <p className="text-sm text-gray-500 mt-1">
                 PNG or JPG • Max 5 MB
               </p>
@@ -118,7 +118,7 @@ const ImageToPdf = () => {
         <button
           onClick={handleSubmit}
           disabled={!file || loading}
-          className="text-white w-full mt-6 bg-rose-dark hover:bg-rose disabled:bg-rose-dark/50 disabled:cursor-not-allowed rounded-2xl py-4 font-semibold text-lg transition-all duration-300"
+          className="text-white w-full mt-6 bg-rose-dark hover:bg-rose disabled:bg-rose-dark/50 disabled:cursor-not-allowed rounded-2xl py-4 font-semibold text-md transition-all duration-300"
         >
           {loading ? "Converting..." : "Convert & Download PDF"}
         </button>

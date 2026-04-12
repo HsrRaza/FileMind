@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "tsx src/index.ts",
-    "dev": "nodemon --watch 'src/**/*.ts' --exec 'tsx src/index.ts'"
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'tsx  index.ts'"
   },
   "keywords": [],
   "author": "",
