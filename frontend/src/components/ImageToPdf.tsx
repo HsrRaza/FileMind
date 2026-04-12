@@ -68,29 +68,29 @@ const ImageToPdf = () => {
   };
 
   return (
-    <div className="min-h-screen bg-cream  flex items-center justify-center p-6">
+    <div className="h-[80vh] bg-cream flex items-center justify-center p-6">
       <div className="w-full max-w-2xl rounded-3xl bg-cream-dark border border-rose p-8 shadow-md">
         <h1 className="text-3xl font-bold text-center mb-2 text-rose-dark">
           Image to PDF Converter
         </h1>
 
-        <p className="text-center text-slate-400 mb-8 text-rose-dark">
+        <p className="text-center text-rose-dark/70 mb-8">
           Upload a PNG or JPG image and download it instantly as PDF
         </p>
 
-        <label className="border-2 border-dashed border-rose rounded-2xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-rose-dark hover:bg-cream-dark transition">
+        <label className="border-2 border-dashed border-rose rounded-2xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-rose-dark hover:bg-cream transition">
           <input
             type="file"
             accept=".png,.jpg,.jpeg"
-            className="hidden "
+            className="hidden"
             onChange={handleChange}
           />
 
           {!file ? (
             <>
               <div className="text-5xl mb-3">🖼️</div>
-              <p className="font-medium text-gray-900">Click to select image</p>
-              <p className="text-sm text-grap-600 mt-1">
+              <p className="font-medium text-gray-700">Click to select image</p>
+              <p className="text-sm text-gray-500 mt-1">
                 PNG or JPG • Max 5 MB
               </p>
             </>
@@ -99,11 +99,10 @@ const ImageToPdf = () => {
               <img
                 src={previewUrl}
                 alt="preview"
-                className="max-h-72 rounded-xl mb-4"
+                className="max-h-72 rounded-xl mb-4 shadow-md"
               />
-
-              <p className="font-medium">{file.name}</p>
-              <p className="text-sm text-slate-400">
+              <p className="font-medium text-gray-800">{file.name}</p>
+              <p className="text-sm text-gray-500">
                 {(file.size / 1024 / 1024).toFixed(2)} MB
               </p>
             </>
@@ -111,7 +110,7 @@ const ImageToPdf = () => {
         </label>
 
         {error && (
-          <div className="mt-4 bg-red-500/10 border border-red-500/20 text-red-300 rounded-xl p-3">
+          <div className="mt-4 bg-rose/10 border border-rose rounded-xl p-3 text-rose-dark">
             {error}
           </div>
         )}
@@ -119,7 +118,7 @@ const ImageToPdf = () => {
         <button
           onClick={handleSubmit}
           disabled={!file || loading}
-          className="text-white w-full mt-6 bg-rose-dark bg-rose disabled:bg-rose-dark/50 disabled:cursor-not-allowed rounded-2xl py-4 font-semibold text-lg transition"
+          className="text-white w-full mt-6 bg-rose-dark hover:bg-rose disabled:bg-rose-dark/50 disabled:cursor-not-allowed rounded-2xl py-4 font-semibold text-lg transition-all duration-300"
         >
           {loading ? "Converting..." : "Convert & Download PDF"}
         </button>
