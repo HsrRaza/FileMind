@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+:root{
+    --color-cream: #FFFBF1;
+    --color-cream-dark: #FFF2D0;
+    --color-rose: #FFB2B2;
+    --color-rose-dark: #E36A6A;
+}
+
+
+.bg-cream { background-color: var(--color-cream); }
+.bg-cream-dark { background-color: var(--color-cream-dark); }
+.bg-rose { background-color: var(--color-rose); }
+.bg-rose-dark { background-color: var(--color-rose-dark); }
+
+.text-rose-dark { color: var(--color-rose-dark); }
+.text-rose { color: var(--color-rose); }
+
+.border-rose { border-color: var(--color-rose); }
+.border-rose-dark { border-color: var(--color-rose-dark); }
+
+.hover-bg-rose:hover { background-color: var(--color-rose); }
+.hover-bg-rose-dark:hover { background-color: var(--color-rose-dark); }

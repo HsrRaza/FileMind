@@ -68,17 +68,17 @@ const ImageToPdf = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white flex items-center justify-center p-6">
-      <div className="w-full max-w-2xl rounded-3xl bg-slate-900 border border-slate-800 p-8 shadow-2xl">
-        <h1 className="text-3xl font-bold text-center mb-2">
+    <div className="min-h-screen bg-cream  flex items-center justify-center p-6">
+      <div className="w-full max-w-2xl rounded-3xl bg-cream-dark border border-rose p-8 shadow-md">
+        <h1 className="text-3xl font-bold text-center mb-2 text-rose-dark">
           Image to PDF Converter
         </h1>
 
-        <p className="text-center text-slate-400 mb-8">
+        <p className="text-center text-slate-400 mb-8 text-rose-dark">
           Upload a PNG or JPG image and download it instantly as PDF
         </p>
 
-        <label className="border-2 border-dashed border-slate-700 rounded-2xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 transition">
+        <label className="border-2 border-dashed border-rose rounded-2xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-rose-dark hover:bg-cream-dark transition">
           <input
             type="file"
             accept=".png,.jpg,.jpeg"
@@ -89,8 +89,8 @@ const ImageToPdf = () => {
           {!file ? (
             <>
               <div className="text-5xl mb-3">🖼️</div>
-              <p className="font-medium">Click to select image</p>
-              <p className="text-sm text-slate-400 mt-1">
+              <p className="font-medium text-gray-900">Click to select image</p>
+              <p className="text-sm text-grap-600 mt-1">
                 PNG or JPG • Max 5 MB
               </p>
             </>
@@ -119,7 +119,7 @@ const ImageToPdf = () => {
         <button
           onClick={handleSubmit}
           disabled={!file || loading}
-          className="w-full mt-6 bg-blue-600 hover:bg-blue-500 disabled:bg-slate-700 disabled:cursor-not-allowed rounded-2xl py-4 font-semibold text-lg transition"
+          className="text-white w-full mt-6 bg-rose-dark bg-rose disabled:bg-rose-dark/50 disabled:cursor-not-allowed rounded-2xl py-4 font-semibold text-lg transition"
         >
           {loading ? "Converting..." : "Convert & Download PDF"}
         </button>
