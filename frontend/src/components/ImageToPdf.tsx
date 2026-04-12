@@ -34,8 +34,9 @@ const ImageToPdf = () => {
       const formData = new FormData();
       formData.append("image", file);
 
-      const response = await axios.post(
-        import.meta.env.VITE_API_URL,
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api/data';
+
+      const response = await axios.post(API_URL,
         formData,
         {
           responseType: "blob",
