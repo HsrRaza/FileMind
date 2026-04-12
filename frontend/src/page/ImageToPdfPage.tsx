@@ -1,9 +1,9 @@
-import React from 'react'
+import ImageToPdf from "../components/ImageToPdf"
 
 const ImageToPdfPage = () => {
   return (
     <>
-    <ImageToPdfPage/>
+    <ImageToPdf/>
     </>
   )
 }
