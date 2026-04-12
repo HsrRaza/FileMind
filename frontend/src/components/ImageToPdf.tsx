@@ -82,7 +82,7 @@ const ImageToPdf = () => {
           <input
             type="file"
             accept=".png,.jpg,.jpeg"
-            className="hidden"
+            className="hidden "
             onChange={handleChange}
           />
 
